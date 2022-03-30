@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link href='https://fonts.googleapis.com/css?family=New Rocker' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        /* for touch screen */
+        touch-action: none;
+      }
+
+      body {
+        overflow: hidden;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background: #111;
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+      }
+      h3{
+      color:white;
+      position:absolute ;
+top:2%;
+left:30%;
+
+      }
+      #drag-container,
+      #spin-container {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin: auto;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform: rotateX(-10deg);
+        transform: rotateX(-10deg);
+      }
+
+      #drag-container img,
+      #drag-container video {
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        line-height: 200px;
+        font-size: 50px;
+        text-align: center;
+        -webkit-box-shadow: 0 0 8px #fff;
+        
+        -webkit-box-reflect: below 10px
+          linear-gradient(transparent, transparent, #0005);
+      }
+
+      #drag-container img:hover,
+    {
+        -webkit-box-shadow: 0 0 15px #fffd;
+        box-shadow: 0 0 15px 2F32CA;
+        -webkit-box-reflect: below 10px
+          linear-gradient(transparent, transparent, #0007);
+      }
+
+      #drag-container p {
+        font-family: Serif;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        text-align:center;
+        -webkit-transform: translate(-50%, -50%) rotateX(90deg);
+        transform: translate(-50%, -50%) rotateX(90deg);
+        color: #fff;
+      }
+
+      #ground {
+        width: 900px;
+        height: 900px;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%) rotateX(720deg);
+        transform: translate(-50%, -50%) rotateX(720deg);
+        background: -webkit-radial-gradient(
+          center center,
+          farthest-side,
+          #9993,
+          transparent
+        );
+      }
+
+     
+
+      @-webkit-keyframes spin {
+        from {
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+        to {
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+      }
+
+      @keyframes spin {
+        from {
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+        to {
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+      }
+      @-webkit-keyframes spinRevert {
+        from {
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+        to {
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+      }
+      @keyframes spinRevert {
+        from {
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+        to {
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+ <link href='https://fonts.googleapis.com/css?family=Berkshire Swash' rel='stylesheet'>
+    <h3><font face="Berkshire Swash">Beauty queen Sudakshina</font></h3>
+    <div id="drag-container">
+      <div id="spin-container">
+        <!-- Add your images (or video) here -->
+        <img
+          src="https://scontent-amt2-1.xx.fbcdn.net/v/t1.6435-9/51502968_955159038010720_2482158984446869504_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7aed08&efg=eyJpIjoiYiJ9&_nc_ohc=KSRi_AYSPoEAX9QzyPs&tn=RWiZ60nR5EigIsEO&_nc_ht=scontent-amt2-1.xx&oh=00_AT-ly6zTYeCsM4XbblC7OB-TCr8k0rHyPsnrH9mzGZu7Pg&oe=626A4ED6"
+          alt=""
+        />
+        <img
+          src="https://scontent-ams4-1.xx.fbcdn.net/v/t31.18172-8/20117007_734619763397983_1436612324250851570_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=7aed08&efg=eyJpIjoiYiJ9&_nc_ohc=st5IVtdfgREAX-EiSsw&_nc_ht=scontent-ams4-1.xx&oh=00_AT_tEkjlwMfvNnfVQZ2rruNzZX93SMNhYi-HxzcL28VEVg&oe=6268E2EF"
+          alt=""
+        />
+        <img
+          src="https://scontent-amt2-1.xx.fbcdn.net/v/t31.18172-8/28828835_760038474189445_8150117500346380839_o.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7aed08&efg=eyJpIjoiYiJ9&_nc_ohc=Mkv-vQUUg9UAX9DRoKE&_nc_ht=scontent-amt2-1.xx&oh=00_AT8EreSgSLNH6J7sc4th_VQsunxl7OVznmhZVRDYmHU1bw&oe=626931B8"
+          alt=""
+        />
+        <img
+          src="https://scontent-ams4-1.xx.fbcdn.net/v/t1.6435-9/90457060_1248686975324590_6709879139974774784_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=85a577&efg=eyJpIjoiYiJ9&_nc_ohc=ZekS4fcXgacAX-F_rv_&_nc_ht=scontent-ams4-1.xx&oh=00_AT_hxhcFuW4XZcV_0fOWYnhpaSlbGKd99iSBkidyIa-pqg&oe=626A2A3B"
+          alt=""
+        />
+        <img
+          src="https://scontent-ams4-1.xx.fbcdn.net/v/t1.6435-9/97382870_1291728441020443_4307188079979921408_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=7aed08&efg=eyJpIjoiYiJ9&_nc_ohc=jO-vm2gQOa4AX-UN9jq&_nc_ht=scontent-ams4-1.xx&oh=00_AT-eyvqQFbkn5nt5F5uUj9ViowCcoySuRBgeIziu_r076w&oe=626AC855"
+          alt=""
+        />
+        <img
+            src="https://scontent-amt2-1.xx.fbcdn.net/v/t1.6435-9/102922034_1316705988522688_7395399241627717906_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=7aed08&efg=eyJpIjoiYiJ9&_nc_ohc=5PaluWnXSk4AX981T35&_nc_ht=scontent-amt2-1.xx&oh=00_AT_a057rCoVFbeWE3WMOhjIe2hCvc-2_leYS4G9aCYPUkA&oe=626BE9EC"
+            alt=""
+          />
+          <img
+            src="https://scontent-amt2-1.xx.fbcdn.net/v/t1.6435-9/160824296_1523402091186409_3094742401251948781_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=7aed08&efg=eyJpIjoiYiJ9&_nc_ohc=dUnYMtEi9xkAX_9iq68&_nc_oc=AQkZEUxOxBs3Uj8YwNMArwUdhCfQMF9kqe7mikp5IVgd4tzWtnY7X2gylllnh9Bqfk8&_nc_ht=scontent-amt2-1.xx&oh=00_AT98SKHQhh86MmYYrrI8GAbLbcEoTnelNnlzM164lCw-Tw&oe=626B044C"
+            alt=""
+          />
+        
+
+        <!-- Example image with link -->
+        <a
+          target="_blank"
+          href="https://i.imgur.com/5ZPGjsD.jpg"
+        >
+          
+        </a>
+
+    
+        <audio id="song"><source src="https://www.dropbox.com/s/wuhnr1wz26sf4np/happy.mp3?dl=1"> </audio>
+
+        <!-- Text at center of ground -->
+        <p>The_Queen_Just_Step_Into <br>" 17 "</p>
+      </div>
+      <div id="ground"></div>
+    </div>
+
+
+    <script>
+    
+window.addEventListener('click', () => {
+    
+    document.getElementById("song").play();
+    
+});
+
+      // Author: Hoang Tran (https://www.facebook.com/profile.php?id=100004848287494)
+      // Github verson (1 file .html): https://github.com/HoangTran0410/3DCarousel/blob/master/index.html
+
+      // You can change global variables here:
+      var radius = 240; // how big of the radius
+      var autoRotate = true; // auto rotate or not
+      var rotateSpeed = -55; // unit: seconds/360 degrees
+      var imgWidth = 130; // width of images (unit: px)
+      var imgHeight = 170; // height of images (unit: px)
+
+      // Link of background music - set 'null' if you dont want to play background music
+      
+
+      /*
+     NOTE:
+       + imgWidth, imgHeight will work for video
+       + if imgWidth, imgHeight too small, play/pause button in <video> will be hidden
+       + Music link are taken from: https://hoangtran0410.github.io/Visualyze-design-your-own-/?theme=HauMaster&playlist=1&song=1&background=28
+       + Custom from code in tiktok video  https://www.facebook.com/J2TEAM.ManhTuan/videos/1353367338135935/
+*/
+
+      // ===================== start =======================
+      setTimeout(init, 100);
+
+      var odrag = document.getElementById("drag-container");
+      var ospin = document.getElementById("spin-container");
+      var aImg = ospin.getElementsByTagName("img");
+      var aEle =[...aImg ]
+
+      // Size of images
+      ospin.style.width = imgWidth + "px";
+      ospin.style.height = imgHeight + "px";
+
+      // Size of ground - depend on radius
+      var ground = document.getElementById("ground");
+      ground.style.width = radius * 2 + "px";
+      ground.style.height = radius * 2 + "px";
+
+      function init(delayTime) {
+        for (var i = 0; i < aEle.length; i++) {
+          aEle[i].style.transform =
+            "rotateY(" +
+            i * (360/ aEle.length) +
+            "deg) translateZ(" +
+            radius +
+            "px)";
+          aEle[i].style.transition = "transform 1s";
+          aEle[i].style.transitionDelay =
+            delayTime || (aEle.length - i) / 4 + "s";
+        }
+      }
+
+      function applyTranform(obj) {
+        // Constrain the angle of camera (between 0 and 180)
+        if (tY >180) tY = 180;
+        if (tY < 0) tY = 0;
+
+        // Apply the angle
+        obj.style.transform = "rotateX(" + -tY + "deg) rotateY(" + tX + "deg)";
+      }
+
+      function playSpin(yes) {
+        ospin.style.animationPlayState = yes ? "running" : "paused";
+      }
+
+      var sX,
+        sY,
+        nX,
+        nY,
+        desX = 0,
+        desY = 0,
+        tX = 0,
+        tY = 10;
+
+      // auto spin
+      if (autoRotate) {
+        var animationName = rotateSpeed > 0? "spin" : "spinRevert";
+        ospin.style.animation = `${animationName} ${Math.abs(
+          rotateSpeed
+        )}s infinite linear`;
+      }
+
+      // add background music
+     
+      // setup events
+      document.onpointerdown = function(e) {
+        clearInterval(odrag.timer);
+        e = e || window.event;
+        var sX = e.clientX,
+          sY = e.clientY;
+
+        this.onpointermove = function(e) {
+          e = e || window.event;
+          var nX = e.clientX,
+            nY = e.clientY;
+          desX = nX - sX;
+          desY = nY - sY;
+          tX += desX * 0.1;
+          tY += desY * 0.1;
+          applyTranform(odrag);
+          sX = nX;
+          sY = nY;
+        };
+
+        this.onpointerup = function(e) {
+          odrag.timer = setInterval(function() {
+            desX *= 0.95;
+            desY *= 0.95;
+            tX += desX * 0.1;
+            tY += desY * 0.1;
+            applyTranform(odrag);
+            playSpin(false);
+            if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
+              clearInterval(odrag.timer);
+              playSpin(true);
+            }
+          }, 17);
+          this.onpointermove = this.onpointerup = null;
+        };
+
+        return false;
+      };
+
+      document.onmousewheel = function(e) {
+        e = e || window.event;
+        var d = e.wheelDelta / 20 || -e.detail;
+        radius += d;
+        init(1);
+      };
+    </script>
+</body></html>
+    
